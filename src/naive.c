@@ -21,11 +21,13 @@ typedef struct data_wrapper {
 } data_wrapper;
 
 void* comparer(void* wrapper) {
-    bool same = true;
+    bool same = false;
     int pos = ((data_wrapper*)wrapper)->pos;
     data* arg = ((data_wrapper*)wrapper)->pointer;
     for (int i = 0; i < arg->sample_size; ++i) {
-        if (arg->str[pos + i] != arg->sample[i]) {
+        if (arg->str[pos + i] == arg->sample[i]) {
+            same = true;
+        } else {
             same = false;
             break;
         }
